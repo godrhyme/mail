@@ -6,7 +6,6 @@
 <!--    轮播图广告-->
     <GridIcon></GridIcon>
 <!--    滑动图标-->
-    这是首页
   </div>
 </template>
 
