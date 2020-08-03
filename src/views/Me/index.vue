@@ -1,6 +1,6 @@
 <template>
   <div>
-    这是首页
+    这是我的页面
     <menubar></menubar>
   </div>
 </template>

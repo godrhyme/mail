@@ -1,8 +1,9 @@
 <template>
   <div>
-    这是首页
+    这是分类页面
     <menubar></menubar>
   </div>
+
 </template>
 
 <script>

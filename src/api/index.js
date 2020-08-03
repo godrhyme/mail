@@ -1,5 +1,5 @@
-import homeData from './requestAPI/homeData'
+// import homeData from './requestAPI/homeData'
 
 export default {
-  homeData
+  // homeData
 }

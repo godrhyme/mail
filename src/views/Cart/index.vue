@@ -1,6 +1,6 @@
 <template>
   <div>
-    这是首页
+    这是购物车
     <menubar></menubar>
   </div>
 </template>
