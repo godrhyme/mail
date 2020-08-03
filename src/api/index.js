@@ -1,4 +1,4 @@
-import homeData from './requestAPI/homeData'
+import homeData from './requestAPI/HomeData'
 
 export default {
   homeData
