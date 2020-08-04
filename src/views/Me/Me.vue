@@ -6,12 +6,13 @@
 </template>
 
 <script>
-  import menubar from '../../components/MenuBar.vue'
-  export default {
-    components: {
-      menubar
-    }
+import menubar from '../../components/MenuBar.vue'
+
+export default {
+  components: {
+    menubar
   }
+}
 </script>
 
 <style>

@@ -19,7 +19,11 @@ import {
   Col,
   PullRefresh,
   Toast,
-  Sticky
+  Sticky,
+  Form,
+  Field,
+  Button,
+  Divider
 } from 'vant'
 
 Vue.use(Tabbar)
@@ -33,6 +37,8 @@ Vue.use(Tabbar)
   .use(Row).use(Col)
   .use(PullRefresh).use(Toast)
   .use(Sticky)
+  .use(Form).use(Field).use(Button)
+  .use(Divider)
 Vue.config.productionTip = false
 Vue.prototype.$api = api
 

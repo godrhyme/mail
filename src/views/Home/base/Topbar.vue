@@ -8,7 +8,7 @@
         <van-search shape="round" placeholder="请输入要搜索的内容"/>
       </van-col>
       <van-col span="2" align="center">
-        <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="25"/>
+        <van-icon @click="Login" name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="25"/>
       </van-col>
     </van-row>
   </div>
@@ -23,6 +23,11 @@ export default {
     [Icon.name]: Icon,
     [Row.name]: Row,
     [Col.name]: Col
+  },
+  methods: {
+    Login() {
+      this.$router.push("/Login")
+    }
   }
 }
 </script>
