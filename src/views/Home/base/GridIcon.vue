@@ -1,12 +1,23 @@
 <template>
-  <van-grid :column-num="3">
-    <van-grid-item v-for="value in 6" :key="value" icon="photo-o" text="文字" />
-  </van-grid>
+  <div>
+    <van-swipe :loop="false">
+      <van-swipe-item>
+      <van-grid :border="false" :column-num="4">
+        <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字"/>
+      </van-grid>
+      </van-swipe-item>
+      <van-swipe-item>
+        <van-grid :border="false" :column-num="4">
+          <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字"/>
+        </van-grid>
+      </van-swipe-item>
+    </van-swipe>
+  </div>
 </template>
 
 <script>
 export default {
-name: "GridIcon"
+  name: 'GridIcon'
 }
 </script>
 

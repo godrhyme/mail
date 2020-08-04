@@ -1,14 +1,14 @@
 <template>
   <div class="Topbar">
     <van-row type="flex" justify="space-between" align="center">
-      <van-col span="2" class="text-right">
-        <van-icon name="coupon-o"/>
+      <van-col span="2" align="center">
+        <van-icon name="coupon-o" size="25"/>
       </van-col>
       <van-col span="20">
         <van-search shape="round" placeholder="请输入要搜索的内容"/>
       </van-col>
-      <van-col span="2">
-        <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png"/>
+      <van-col span="2" align="center">
+        <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="25"/>
       </van-col>
     </van-row>
   </div>
