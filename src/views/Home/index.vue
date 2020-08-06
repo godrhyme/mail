@@ -28,7 +28,7 @@ import SwipeImage from '@/views/Home/base/SwipeImage'
 import GridIcon from '@/views/Home/base/GridIcon'
 import Flashsale from '@/views/Home/base/Flashsale'
 import Adver from '@/views/Home/base/Adver'
-import Recommend from '@/views/Home/base/Recommend'
+import Recommend from '@/components/Recommend'
 import { Toast } from 'vant'
 
 export default {

@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="Flash">
     <van-row type="flex" justify="space-between">
       <van-col class="title">
-        <van-icon class-prefix="iconfont icon-miaosha" />
+        <van-icon class-prefix="iconfont icon-miaosha"/>
         <span>限时秒杀</span>
         <van-count-down :time="time">
           <template v-slot="timeData">
@@ -18,7 +18,7 @@
     </van-row>
     <!-- 秒杀商品 -->
     <van-row class="spike-goods" type="flex" justify="space-between">
-      <van-col class="spike-goods-item"  v-for="(item,index) in 10" :key="index">
+      <van-col class="spike-goods-item" v-for="(item,index) in 10" :key="index">
         <van-image
           width="3rem"
           fit="contain"
@@ -39,7 +39,7 @@
 <script>
 export default {
   name: 'Flashsale',
-  data() {
+  data () {
     return {
       time: 30 * 60 * 60 * 1000
     }
@@ -48,6 +48,65 @@ export default {
 
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.Flash {
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .icon-miaosha {
+      font-size: 20px;
+      color: #f06c7a;
+      margin-right: 5px;
+    }
+    span {
+      font-size: 16px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    .time-item {
+      display: inline-block;
+      width: 20px;
+      border-radius: 3px;
+      margin-right: 3px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      background-color: #f06c7a;
+    }
+  }
+  .more {
+    color: #bbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+  }
+  .spike-goods {
+    overflow-x: auto;
+    .spike-goods-item {
+      padding: 10px 0;
+      margin-right: 7px;
+      width: 50%;
+      img {
+        border-radius: 5px;
+      }
+      .price {
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        span {
+          font-size: 14px;
+          color: #f06c7a;
+        }
+        s {
+          color: #bbb;
+        }
+      }
+    }
+  }
+}
 </style>

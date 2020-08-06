@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import api from './api/index'
+import Cookies from "js-cookie"
 import {
   Tabbar,
   TabbarItem,
@@ -23,7 +24,9 @@ import {
   Form,
   Field,
   Button,
-  Divider
+  Divider,
+  AddressList,
+  AddressEdit
 } from 'vant'
 
 Vue.use(Tabbar)
@@ -39,9 +42,10 @@ Vue.use(Tabbar)
   .use(Sticky)
   .use(Form).use(Field).use(Button)
   .use(Divider)
+  .use(AddressEdit).use(AddressList)
 Vue.config.productionTip = false
 Vue.prototype.$api = api
-
+Vue.prototype.$Cookies = Cookies
 new Vue({
   router,
   store,

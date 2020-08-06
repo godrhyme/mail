@@ -77,7 +77,7 @@ export default {
 
 <style scoped>
 .login {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .login-tips {
   padding: 10px;
