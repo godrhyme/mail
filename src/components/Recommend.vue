@@ -7,6 +7,13 @@
 <script>
 export default {
   name: 'Recommend'
+  // created () {
+  //   this.$api.homeData.Likes().then(({
+  //     results
+  //   }) => {
+  //     console.log(results)
+  //   })
+  // }
 }
 </script>
 

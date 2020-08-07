@@ -14,13 +14,11 @@
       <van-address-edit
         :area-list="areaList"
         show-postal
-        show-delete
         show-set-default
         show-search-result
         :search-result="searchResult"
         :area-columns-placeholder="['请选择', '请选择', '请选择']"
         @save="onSave"
-        @delete="onDelete"
         @change-detail="onChangeDetail"
       />
     </div>
@@ -32,24 +30,32 @@ import areas from '@/area/area'
 import { Toast } from 'vant'
 
 export default {
-name: "AddressAdd",
-  data() {
+  name: 'AddressAdd',
+  data () {
     return {
       areaList: areas,
-      searchResult: []
+      searchResult: [],
+      AddressInfo: {
+        name: '',
+        tel: '',
+        address: '',
+        user_id: ''
+      }
     }
   },
   methods: {
     Back () {
       this.$router.go(-1)
     },
-    onSave() {
-      Toast('save')
+    onSave (item) {
+      this.AddressInfo.user_id = parseInt(this.$Cookies.get('userid'))
+      this.AddressInfo.name = item.name
+      this.AddressInfo.tel = parseInt(item.tel)
+      this.AddressInfo.address = item.province + item.city + item.county + item.addressDetail
+      this.$api.addressData.addressAdd(this.AddressInfo)
+      Toast('保存成功')
     },
-    onDelete() {
-      Toast('delete')
-    },
-    onChangeDetail(val) {
+    onChangeDetail (val) {
       if (val) {
         this.searchResult = [
           {

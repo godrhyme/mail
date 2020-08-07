@@ -36,18 +36,37 @@ name: "AddressEdit",
   data() {
     return {
       areaList: areas,
-      searchResult: []
+      searchResult: [],
+      AddressInfo: {
+        name: '',
+        tel: '',
+        address: '',
+        user_id: ''
+      }
     }
 },
   methods: {
     Back () {
       this.$router.go(-1)
     },
-    onSave() {
-      Toast('save')
+    onSave (item) {
+      this.AddressInfo.user_id = parseInt(this.$Cookies.get('userid'))
+      this.AddressInfo.name = item.name
+      this.AddressInfo.tel = parseInt(item.tel)
+      this.AddressInfo.address = item.province + item.city + item.county + item.addressDetail
+      this.$api.addressData.addressEdit(this.AddressInfo,this.$route.query.addressId)
+      Toast('修改成功')
+      this.$router.push('/Address')
     },
-    onDelete() {
-      Toast('delete')
+    onDelete(item) {
+      this.AddressInfo.user_id = parseInt(this.$Cookies.get('userid'))
+      this.AddressInfo.name = item.name
+      this.AddressInfo.tel = parseInt(item.tel)
+      this.AddressInfo.address = item.province + item.city + item.county + item.addressDetail
+      console.log(this.$route.query.addressId)
+      this.$api.addressData.addressDel(this.AddressInfo,this.$route.query.addressId)
+      Toast('删除成功')
+      this.$router.push('/Address')
     },
     onChangeDetail(val) {
       if (val) {

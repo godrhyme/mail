@@ -1,13 +1,11 @@
 import axios from '../http.js'
 
 const userData = {
-  async banner(username,password) {
+  async userlogin(username,password) {
     return await axios
-      .get('/user/login',{
-        params: {
+      .post('/user/login/',{
           username: username,
           password: password
-        }
       })
   }
 }
