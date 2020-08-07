@@ -44,21 +44,15 @@ import {
   CheckboxGroup,
   Stepper,
   CountDown,
-  GridItem,
   Image,
   Row,
   Col,
   PullRefresh,
-  Toast,
-  Sticky,
   Form,
   Field,
-  Button,
-  Divider,
   AddressList,
   AddressEdit,
-  Notify,
-  Popup
+  Notify
 } from 'vant'
 
 Vue.use(Tabbar)

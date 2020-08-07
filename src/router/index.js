@@ -10,7 +10,7 @@ import Login from '@/views/Login/Login'
 import AddressEdit from '@/views/Address/AddressEdit'
 import AddressAdd from '@/views/Address/AddressAdd'
 import Address from '@/views/Address/Address'
-
+import product from '@/views/product/index.vue'
 Vue.use(VueRouter)
 
 const routes = [{
