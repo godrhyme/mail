@@ -27,6 +27,7 @@
       return {
         show: false,
         flag: 'join',
+        order_ids: [],
         sku: {
           // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
           // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
@@ -128,7 +129,8 @@
       }
     },
     props: {
-      price: String
+      price: String,
+      order_id: {}
     },
     methods: {
       onClickIcon() {
@@ -146,10 +148,23 @@
         if (this.flag === 'join') {
           Toast.success('已添加到购物车')
           this.show = false
+          this.$api.cartdata.banner().then(({
+            results
+          }) => {
+            console.log('333')
+          })
         }
         if (this.flag === 'buy') {
           this.show = false
-          this.$router.push('/Order')
+          this.order_ids[0] = this.order_id
+          this.$router.push({
+            path: '/Order',
+            query: {
+              order_id: this.order_ids,
+              goods_flag: 1,
+              cart_flag: 0
+            }
+          })
         }
       }
     }

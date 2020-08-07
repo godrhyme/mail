@@ -6,7 +6,7 @@
       <!-- 数字键盘 -->
       <van-number-keyboard :show="showKeyboard" @input="onInput" @delete="onDelete" @blur="showKeyboard = false" />
     </van-popup>
-    <van-submit-bar :price="3050" button-text="提交订单" @submit="showPopup" button-color="#7232dd" />
+    <van-submit-bar :price="total_price" button-text="提交订单" @submit="showPopup" button-color="#7232dd" />
   </div>
 </template>
 
@@ -20,8 +20,12 @@
         show: false,
         value: '',
         errorInfo: '初试密码为123456',
-        showKeyboard: true
+        showKeyboard: true,
+        total_price: 0
       }
+    },
+    props: {
+      order_data: {}
     },
     methods: {
       onInput(key) {
@@ -32,7 +36,8 @@
             Toast.success('支付成功')
             this.$router.push('/ordermanagement')
           } else {
-            this.errorInfo = '密码错误'
+            this.errorInfo = '密码错误，请重新输入！'
+            this.value = ''
           }
         }
       },
@@ -44,6 +49,19 @@
       onDelete() {
         this.value = this.value.slice(0, this.value.length - 1)
       }
+    },
+    created() {
+      console.log('aaaaa')
+      console.log(this.order_data)
+      var n = 0
+      for (var key in this.order_data) {
+        ++n
+        console.log(key)
+      }
+      for (var i = 0; i < n; i++) {
+        this.total_price += this.order_data[i].original_price
+      }
+      this.total_price = this.total_price * 100
     }
   }
 </script>

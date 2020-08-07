@@ -1,17 +1,17 @@
 <template>
   <div>
-    <section class="order-item" v-for="item of orderList" :key="item.id">
+    <section class="order-item" v-for="(item,index) in ordermanagement_data" :key="index">
       <el-card shadow="always" class="box-card">
         <div slot="header" class="clearfix">
-          订单编号：<font color="#0048AB">{{ item.order_id }}</font>
+          订单编号：<font color="#0048AB">{{ item.id }}</font>
         </div>
         <div class="text item">
-          <goods-list></goods-list>
+          <goods-list :ordermanagement_data="ordermanagement_data"></goods-list>
           <van-divider />
         </div>
         <div class="box4" align="right">
-          共<font color="#0048AB">{{ orderList.length }}</font>件商品<br>
-          创建时间：<font color="#0048AB">{{ item.createAt }}</font><br>
+          共<font color="#0048AB">{{ ordermanagement_data.length }}</font>件商品<br>
+          创建时间：<font color="#0048AB">{{ item.date}}</font><br>
           收货地址：<font color="#0048AB">{{ item.address }}</font><br>
         </div>
       </el-card>
@@ -21,10 +21,13 @@
 </template>
 
 <script>
-  import GoodsList from '@/components/GoodsList'
+  import GoodsList from './goodlist.vue'
   export default {
     components: {
       GoodsList
+    },
+    props: {
+      ordermanagement_data: {}
     },
     data() {
       return {

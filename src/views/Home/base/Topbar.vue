@@ -1,7 +1,7 @@
 <template>
   <div class="Topbar">
     <van-row type="flex" justify="space-between" align="center">
-      <van-col span="2" align="center">
+      <van-col @click="goAddress" span="2" align="center">
         <van-icon name="coupon-o" size="25"/>
       </van-col>
       <van-col span="20">
@@ -27,6 +27,9 @@ export default {
   methods: {
     Login() {
       this.$router.push("/Login")
+    },
+    goAddress() {
+      this.$router.push("/Address")
     }
   }
 }

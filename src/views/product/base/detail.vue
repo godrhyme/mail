@@ -5,12 +5,7 @@
     </van-cell-group>
     <div v-for="(image, index) in detail_img" :key="index">
       <img width="100%" v-lazy="image" />
-      {{detail_img[index]}}
     </div>
-    <img width="100%" src="../../../assets/IMG_2980.jpg">
-    <img width="100%" src="../../../assets/IMG_2981.jpg">
-    <img width="100%" src="../../../assets/IMG_2982.jpg">
-    <img width="100%" src="../../../assets/IMG_2983.jpg">
   </div>
 </template>
 

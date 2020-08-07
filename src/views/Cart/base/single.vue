@@ -12,21 +12,21 @@
     </van-sticky>
     <ul>
       <van-checkbox-group v-model="result" ref="checkboxGroup">
-        <li v-for="item in cartdata" :key="item.id" class="goods-item">
+        <li v-for="(item,index) in cartdata" :key="index" class="goods-item">
           <!-- 左侧图片 -->
           <van-checkbox :name="item.checkboxname"></van-checkbox>
           <section class="left-img">
-            <img width="100%" :src="item.img" :onerror="defImg" />
+            <img width="100%" :src="item.goods_img" :onerror="defImg" />
           </section>
           <!-- 右侧文本 -->
           <section class="right-txt">
-            <p class="goods-name">{{item.name}}</p>
+            <p class="goods-name">{{item.goods_name}}</p>
             <p class="goods-num">
-              <span class="price">￥{{ (item.price * item.num).toFixed(2) }}</span>
+              <span class="price">￥{{ (item.total_price * item.goods_count).toFixed(2) }}</span>
             </p>
           </section>
           <!-- 单个商品订单数量 -->
-          <section class="order-goods-count">x {{ item.num }}</section>
+          <section class="order-goods-count">x {{ item.goods_count }}</section>
           <!-- 删除按钮 -->
           <section class="delete-btn" v-if="isBrowseHistory || isCollectionList">
             <van-icon name="close" class="delete-icon" />
@@ -45,8 +45,8 @@
           <font color="red" size="5" v-if="flag">￥{{total_price}}</font>
         </van-col>
         <van-col span="6" offset="9">
-          <van-button type="info" round v-if="flag" url="/#/Order">结算({{this.result.length}})</van-button>
-          <van-button type="danger" round v-if="!flag">删除({{this.result.length}})</van-button>
+          <van-button type="info" round v-if="flag" @click="click5">结算({{this.result.length}})</van-button>
+          <van-button type="danger" round v-if="!flag" @click="click6">删除({{this.result.length}})</van-button>
         </van-col>
       </van-row>
     </van-sticky>
@@ -81,6 +81,7 @@
     },
     data() {
       return {
+        order_ids: [],
         defImg: 'this.src="' + require('./error-img.png') + '"',
         result: [],
         flag: true,
@@ -92,19 +93,44 @@
       checkAll() {
         this.$refs.checkboxGroup.toggleAll(true)
         console.log(this.result)
+      },
+      click5() {
+        this.$router.push({
+          path: '/Order',
+          query: {
+            order_id: this.order_ids,
+            goods_flag: 0,
+            cart_flag: 1
+          }
+        })
+      },
+      click6() {
+        for (var i in this.order_ids) {
+          console.log(i + 1)
+          this.$api.cartdatadel.banner(i + 1).then(({
+            results
+          }) => {
+            this.$api.cartdatadel.banner().then(({
+              results
+            }) => {
+              this.cartdata = results
+            })
+          })
+        }
       }
     },
     watch: {
       result(val) {
         var i
         var j
-                    this.total_price = 0
+        this.total_price = 0
         for (i = 0; i < this.result.length; i++) {
           for (j = 0; j < this.cartdata_num; j++) {
             console.log(this.result[i])
             console.log(this.cartdata)
             if (this.cartdata[j].checkboxname === this.result[i]) {
-              this.total_price += this.cartdata[j].price
+              this.order_ids[i] = this.cartdata[j].goods_id
+              this.total_price += this.cartdata[j].total_price * this.cartdata[j].goods_count
             }
           }
         }
@@ -112,7 +138,7 @@
     },
     created() {
       var n = 0
-      console.log(this.cartdata.goods1)
+      console.log(this.cartdata[0])
       for (var key in this.cartdata) {
         ++n
         console.log(key)

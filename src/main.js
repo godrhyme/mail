@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import api from './api/index'
 import ElementUI from 'element-ui'
+import Cookies from "js-cookie"
 import 'element-ui/lib/theme-chalk/index.css'
 import {
   Tabbar,
@@ -44,6 +45,14 @@ import {
   Checkbox,
   CheckboxGroup,
   Stepper,
+  CountDown,
+  Image,
+  PullRefresh,
+  Form,
+  Field,
+  AddressList,
+  AddressEdit,
+  Notify
 } from 'vant'
 
 Vue.use(Tabbar)
@@ -58,9 +67,19 @@ Vue.use(Tabbar)
     ShareSheet).use(Tag).use(Sticky).use(Cell).use(CellGroup).use(Skeleton).use(Button).use(TreeSelect).use(SubmitBar).use(
     PasswordInput).use(NumberKeyboard).use(Toast).use(List).use(ElementUI).use(Empty).use(Divider).use(Rate).use(
     Checkbox).use(CheckboxGroup).use(Stepper)
+  .use(CountDown)
+  .use(Image)
+  .use(Row).use(Col)
+  .use(PullRefresh).use(Toast)
+  .use(Sticky)
+  .use(Form).use(Field).use(Button)
+  .use(Divider)
+  .use(AddressEdit).use(AddressList)
+  .use(Notify)
+  .use(Popup)
 Vue.config.productionTip = false
 Vue.prototype.$api = api
-
+Vue.prototype.$Cookies = Cookies
 new Vue({
   router,
   store,

@@ -7,13 +7,16 @@ import order from '../views/Order/index.vue'
 import ordermanagement from '../views/Ordermanagement/index.vue'
 import Me from '../views/Me/Me.vue'
 import Login from '@/views/Login/Login'
-
+import AddressEdit from '@/views/Address/AddressEdit'
+import AddressAdd from '@/views/Address/AddressAdd'
+import Address from '@/views/Address/Address'
+import product from '@/views/product/index.vue'
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    redirect: '/Home'
-  },
+  path: '/',
+  redirect: '/Home'
+},
   {
     path: '/Home',
     name: 'Home',
@@ -32,7 +35,11 @@ const routes = [{
   {
     path: '/Me',
     name: 'Me',
-    component: Me
+    component: Me,
+    beforeEnter: (to, from, next) => {
+      const isLogin = localStorage.getItem('isLogin')
+      isLogin ? next() : next('/Login')
+    }
   },
   {
     path: '/product',
@@ -53,6 +60,21 @@ const routes = [{
     path: '/Login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/AddressEdit',
+    name: 'AddressEdit',
+    component: AddressEdit
+  },
+  {
+    path: '/AddressAdd',
+    name: 'AddressAdd',
+    component: AddressAdd
+  },
+  {
+    path: '/Address',
+    name: 'Address',
+    component: Address
   }
 ]
 
