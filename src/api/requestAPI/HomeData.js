@@ -1,9 +1,9 @@
 import axios from '../http.js'
 
 const homeData = {
-  async banner() {
+  async Like() {
     return await axios
-      .get('books/banner')
+      .get('/goods/home')
   }
 }
 export default homeData

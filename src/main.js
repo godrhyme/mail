@@ -26,7 +26,9 @@ import {
   Button,
   Divider,
   AddressList,
-  AddressEdit
+  AddressEdit,
+  Notify,
+  Popup
 } from 'vant'
 
 Vue.use(Tabbar)
@@ -43,6 +45,8 @@ Vue.use(Tabbar)
   .use(Form).use(Field).use(Button)
   .use(Divider)
   .use(AddressEdit).use(AddressList)
+  .use(Notify)
+  .use(Popup)
 Vue.config.productionTip = false
 Vue.prototype.$api = api
 Vue.prototype.$Cookies = Cookies

@@ -14,7 +14,7 @@
       <van-row type="flex" justify="space-between" align="center" class="user-info-wrapper">
         <van-col class="user-info">
           <div class="user-avatar m-r-10">
-            <img src="../../assets/logo.png"/>
+            <img @click="showPopup" src="../../assets/logo.png"/>
           </div>
           <div class="user-name">
             <div class="name">你好,{{ $Cookies.get('TOKEN') }}</div>
@@ -40,17 +40,25 @@
         <van-grid-item icon="bill" text="我的钱包"/>
       </van-grid>
     </van-row>
+    <recommend></recommend>
     <menubar></menubar>
+    <van-popup v-model="show" position="bottom" :style="{ height: '5%' }" >
+      <van-button @click="logout" round block type="info" native-type="submit">
+        注销登陆
+      </van-button>
+    </van-popup>
   </div>
 </template>
 
 <script>
 import menubar from '../../components/MenuBar.vue'
 import UserLike from '@/views/Me/UserLike'
+import Recommend from '@/components/Recommend'
 
 export default {
   data () {
     return {
+      show: false,
       Data: [
         {
           name: '商城豆',
@@ -73,11 +81,26 @@ export default {
   },
   components: {
     menubar,
-    UserLike
+    UserLike,
+    Recommend
   },
   methods: {
     Back () {
       this.$router.go(-1)
+    },
+    logout() {
+      setTimeout(() => {
+          this.$Cookies.remove('TOKEN', this.username, { expires: 7 })
+          localStorage.setItem('isLogin', false)
+          this.$router.push('/Login')
+          this.$notify({
+            type: 'success',
+            message: '已退出登录'
+          })
+      }, 1000)
+    },
+    showPopup() {
+      this.show = true
     }
   }
 }

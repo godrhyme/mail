@@ -21,11 +21,6 @@
         @edit="AddressEdit"
       />
     </div>
-<!--      <van-row>-->
-<!--        <van-button @click="AddressAdd" class="addbotton" round block type="info" native-type="submit">-->
-<!--          新建收货地址-->
-<!--        </van-button>-->
-<!--      </van-row>-->
     </div>
 </template>
 

@@ -39,10 +39,10 @@
     <van-divider>第三方登录</van-divider>
     <div class="otherlogin">
       <div class="message">
-        <van-icon size="25px" name="comment-circle" />
+        <van-icon size="25px" name="comment-circle"/>
       </div>
       <div class="phone">
-        <van-icon size="25px" name="phone-circle" />
+        <van-icon size="25px" name="phone-circle"/>
       </div>
     </div>
     <div class="protocol">
@@ -60,13 +60,27 @@ export default {
   name: 'Login',
   data () {
     return {
-      username: '',
-      password: ''
+      username: '', //用户名
+      password: '', //密码
+      phone: '', //手机号
+      isLoading: false //登录loading
     }
   },
   methods: {
-    onSubmit (values) {
-      console.log('submit', values)
+    onSubmit () {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+        if (this.username && this.password) {
+          this.$Cookies.set('TOKEN', this.username, { expires: 7 })
+          localStorage.setItem('isLogin', true)
+          this.$router.push('/')
+          this.$notify({
+            type: 'success',
+            message: '登录成功'
+          })
+        }
+      }, 1000)
     },
     Back () {
       this.$router.go(-1)
@@ -79,6 +93,7 @@ export default {
 .login {
   margin-top: 15px;
 }
+
 .login-tips {
   padding: 10px;
   color: #ad1414;
@@ -86,16 +101,22 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+
 .protocol {
   text-align: center;
-  color: #901414;}
+  color: #901414;
+}
+
 a {
   color: blue;
 }
+
 .otherlogin {
   padding: 20px;
   display: flex;
-  justify-content: space-around;}
+  justify-content: space-around;
+}
+
 .loginform {
   margin-top: 20px;
   margin-bottom: 20px;
