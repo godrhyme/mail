@@ -14,7 +14,7 @@
         name="用户名"
         label="用户名"
         label-width="60"
-        :rules="[{ required: true, message: '请填写用户名' }]"
+        :rules="[{ required: true, message: '请填写用户名,默认用户名user' }]"
       />
       <van-field
         v-model="password"
@@ -23,7 +23,7 @@
         label="密码"
         loading-text="登录中..."
         label-width="60"
-        :rules="[{ required: true, message: '请填写密码' }]"
+        :rules="[{ required: true, message: '请填写密码，默认密码password' }]"
       />
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit">
@@ -60,6 +60,7 @@ export default {
   name: 'Login',
   data () {
     return {
+      userinfo: {},
       username: '', //用户名
       password: '', //密码
       phone: '', //手机号
@@ -69,10 +70,17 @@ export default {
   methods: {
     onSubmit () {
       this.isLoading = true
+      // this.$api.userData.userlogin(this.username,this.password).then(({
+      //   data
+      // }) => {
+      //   console.log(data)
+      //   this.userinfo = data
+      // })
       setTimeout(() => {
         this.isLoading = false
         if (this.username && this.password) {
           this.$Cookies.set('TOKEN', this.username, { expires: 7 })
+          this.$Cookies.set('userid', 1)
           localStorage.setItem('isLogin', true)
           this.$router.push('/')
           this.$notify({

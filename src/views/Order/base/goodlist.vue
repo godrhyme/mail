@@ -3,17 +3,17 @@
     <li v-for="(item,index) in order_data" :key="index" class="goods-item">
       <!-- 左侧图片 -->
       <section class="left-img">
-        <img width="100%" :src="item.goods_cover_img[0]" :onerror="defImg" />
+        <img width="100%" :src="item.img" :onerror="defImg" />
       </section>
       <!-- 右侧文本 -->
       <section class="right-txt">
-        <p class="goods-name">{{item.goods_name}}</p>
+        <p class="goods-name">{{item.name}}</p>
         <p class="goods-num">
-          <span class="price">￥{{ (item.original_price).toFixed(2) }}</span>
+          <span class="price">￥{{ (item.price * item.num).toFixed(2) }}</span>
         </p>
       </section>
       <!-- 单个商品订单数量 -->
-      <section class="order-goods-count">x 1</section>
+      <section class="order-goods-count">x {{item.num}}</section>
       <!-- 删除按钮 -->
       <section class="delete-btn" v-if="isBrowseHistory || isCollectionList">
         <van-icon name="close" class="delete-icon" />

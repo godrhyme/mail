@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .userlike {
   margin-top: 20px;
   padding: 0 10px;

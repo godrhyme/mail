@@ -1,37 +1,30 @@
 import axios from '../http.js'
 
 const addressData = {
-  async addressList(username) {
+  async addressList (userid) {
     return await axios
-      .get('/user/addressList',{
-        params: {
-          username: username
+      .get('/address/user/' + userid + '/')
+  },
+  async addressAdd (Adderssinfo) {
+    return await axios
+      .post('/address/',Adderssinfo,{
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
         }
       })
   },
-  async addressAdd(username) {
-    return await axios
-      .put('/user/addAddress',{
-        params: {
-          username: username
+  async addressDel (Adderssinfo,id) {
+    return await axios.delete('/address/' + id + '/',Adderssinfo,{
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
         }
       })
   },
-  async addressDel(username,addressId) {
+  async addressEdit (Adderssinfo,id) {
     return await axios
-      .delete('/user/editAddress',{
-        params: {
-          username: username,
-          addressId: addressId
-        }
-      })
-  },
-  async addressEdit(username,addressId) {
-    return await axios
-      .put('/user/delAddress',{
-        params: {
-          username: username,
-          addressId: addressId
+      .put('/address/' + id + '/',Adderssinfo, {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
         }
       })
   }

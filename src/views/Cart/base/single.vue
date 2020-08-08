@@ -16,17 +16,17 @@
           <!-- 左侧图片 -->
           <van-checkbox :name="item.checkboxname"></van-checkbox>
           <section class="left-img">
-            <img width="100%" :src="item.goods_img" :onerror="defImg" />
+            <img width="100%" :src="item.img" :onerror="defImg" />
           </section>
           <!-- 右侧文本 -->
           <section class="right-txt">
-            <p class="goods-name">{{item.goods_name}}</p>
+            <p class="goods-name">{{item.name}}</p>
             <p class="goods-num">
-              <span class="price">￥{{ (item.total_price * item.goods_count).toFixed(2) }}</span>
+              <span class="price">￥{{ (item.price * item.num).toFixed(2) }}</span>
             </p>
           </section>
           <!-- 单个商品订单数量 -->
-          <section class="order-goods-count">x {{ item.goods_count }}</section>
+          <section class="order-goods-count">x {{ item.num }}</section>
           <!-- 删除按钮 -->
           <section class="delete-btn" v-if="isBrowseHistory || isCollectionList">
             <van-icon name="close" class="delete-icon" />
@@ -36,7 +36,7 @@
       <!--    <p class="load-more" v-if="isloadMore">- 加载更多 -</p> -->
       <!--    <p class="load-more">- 我们是有底线的 -</p> -->
     </ul>
-    <van-sticky :offset-top="640">
+    <van-sticky :offset-top="717">
       <van-row>
         <van-col span="4" offset="1">
           <van-button plain type="primary" round @click="checkAll">全选</van-button>
@@ -106,16 +106,26 @@
       },
       click6() {
         for (var i in this.order_ids) {
-          console.log(i + 1)
-          this.$api.cartdatadel.banner(i + 1).then(({
-            results
-          }) => {
-            this.$api.cartdatadel.banner().then(({
-              results
-            }) => {
-              this.cartdata = results
-            })
-          })
+          console.log(this.order_ids[i])
+          this.cartdata.splice(this.order_ids[i], 1)
+          console.log(this.cartdata)
+          console.log('1234')
+          this.result = []
+          var n = 0
+          for (var key in this.cartdata) {
+            ++n
+            console.log(key)
+          }
+          this.cartdata_num = n
+          // this.$api.cartdatadel.banner(i + 1).then(({
+          //   results
+          // }) => {
+          //   this.$api.cartdatadel.banner().then(({
+          //     results
+          //   }) => {
+          //     this.cartdata = results
+          //   })
+          // })
         }
       }
     },
@@ -127,10 +137,13 @@
         for (i = 0; i < this.result.length; i++) {
           for (j = 0; j < this.cartdata_num; j++) {
             console.log(this.result[i])
+            console.log(this.result[i])
             console.log(this.cartdata)
             if (this.cartdata[j].checkboxname === this.result[i]) {
-              this.order_ids[i] = this.cartdata[j].goods_id
-              this.total_price += this.cartdata[j].total_price * this.cartdata[j].goods_count
+              console.log(this.cartdata[j].id)
+              this.order_ids[i] = this.cartdata[j].id
+              this.total_price += this.cartdata[j].price * this.cartdata[j].num
+              console.log(this.order_ids)
             }
           }
         }

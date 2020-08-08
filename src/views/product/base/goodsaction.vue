@@ -151,6 +151,7 @@
           this.$api.cartdata.banner().then(({
             results
           }) => {
+            console.log(results)
             console.log('333')
           })
         }

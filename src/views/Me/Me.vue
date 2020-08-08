@@ -42,7 +42,7 @@
     </van-row>
     <recommend></recommend>
     <menubar></menubar>
-    <van-popup v-model="show" position="bottom" :style="{ height: '5%' }" >
+    <van-popup v-model="show" position="bottom" :style="{ height: '5%' }">
       <van-button @click="logout" round block type="info" native-type="submit">
         注销登陆
       </van-button>
@@ -88,18 +88,18 @@ export default {
     Back () {
       this.$router.go(-1)
     },
-    logout() {
+    logout () {
       setTimeout(() => {
-          this.$Cookies.remove('TOKEN', this.username, { expires: 7 })
-          localStorage.setItem('isLogin', false)
-          this.$router.push('/Login')
-          this.$notify({
-            type: 'success',
-            message: '已退出登录'
-          })
+        this.$Cookies.remove('TOKEN', this.username, { expires: 7 })
+        localStorage.setItem('isLogin', false)
+        this.$router.push('/Login')
+        this.$notify({
+          type: 'success',
+          message: '已退出登录'
+        })
       }, 1000)
     },
-    showPopup() {
+    showPopup () {
       this.show = true
     }
   }

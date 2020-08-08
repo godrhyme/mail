@@ -1,5 +1,3 @@
-// import homeData from './requestAPI/homeData'
-
 import userData from '@/api/requestAPI/UserData'
 import addressData from '@/api/requestAPI/AddressData'
 import singlegoods from './requestAPI/singlegoods.js'
@@ -9,11 +7,10 @@ import cartdatadel from './requestAPI/cartdatadel.js'
 import cartdataadd from './requestAPI/cartdataadd.js'
 
 export default {
-  // homeData
+  homeData,
   userData,
   addressData,
   singlegoods,
-  homeData,
   cartdata,
   cartdatadel,
   cartdataadd

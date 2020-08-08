@@ -51,15 +51,14 @@
       }
     },
     created() {
-      console.log('aaaaa')
-      console.log(this.order_data)
       var n = 0
       for (var key in this.order_data) {
         ++n
         console.log(key)
       }
       for (var i = 0; i < n; i++) {
-        this.total_price += this.order_data[i].original_price
+        this.total_price += this.order_data[i].price
+        console.log(key)
       }
       this.total_price = this.total_price * 100
     }
